@@ -24,7 +24,26 @@ string ListTest[10] {
       "TestData/Test9.txt", 
       "TestData/Test10.txt", 
 };
-ofstream of("TimeRecord/StdSort_Time_Record.txt");
+
+void QuickSort(vector<float> &arr, int left, int right)
+{
+    int i = 0,j = 0,pivot = 0;
+    pivot = arr[(left+right)/2];
+    i= left; j = right;
+    while (i<j)
+    {
+        while (arr[i] < pivot && i<right) i++;
+        while (arr[j] > pivot && j>left) j--;
+        if (i<=j) 
+        {
+            swap(arr[i],arr[j]);
+            i++; j--;
+        }
+    }
+    if (j>left) QuickSort(arr,left,j);
+    if (i<right) QuickSort(arr,i,right);    
+}
+ofstream of("TimeRecord/QuickSort_Time_Record.txt");
 void Calculate(int test)
 {
     clock_t start, end;
@@ -38,8 +57,9 @@ void Calculate(int test)
     }
     inf.close();
     cout << "Read Test " << test+1 <<" Done! Start Sort |||........||| ";
+    int n = NMax;
     start = clock();
-    sort(array.begin(),array.end());
+    QuickSort(array,0,n-1);
     end = clock();
     time_used = (double)(end-start) / CLOCKS_PER_SEC;
     cout << "Test " << test+1 <<" passed!. Time used: "<< time_used << 's' << endl;
@@ -47,9 +67,9 @@ void Calculate(int test)
 }
 int main()
 {
-    cout << "Start std::sort" << '\n';
+    cout << "Start QuickSort" << '\n';
     forrange(i,0,10) Calculate(i);
     of.close();
-    cout << "End std::sort" << '\n';
+    cout << "End QuickSort" << '\n';
     return 0;
 }

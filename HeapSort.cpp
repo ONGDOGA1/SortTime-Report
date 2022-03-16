@@ -77,7 +77,9 @@ void Calculate(int test)
 }
 int main()
 {
+    cout << "Start HeapSort" << '\n';
     forrange(i,0,10) Calculate(i);
     of.close();
+    cout << "End HeapSort" << '\n';
     return 0;
 }

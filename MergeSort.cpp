@@ -103,7 +103,9 @@ void Calculate(int test)
 }
 int main()
 {
+    cout << "Start MergeSort" << '\n';
     forrange(i,0,10) Calculate(i);
     of.close();
+    cout << "End MergeSort" << '\n';
     return 0;
 }
